@@ -282,6 +282,7 @@ function handleComplete(evt, comp) {
 				blocks[location] = 0;
 				createjs.Sound.play(explore_sound());
 				setTimeout(function () { exportRoot.removeChild(tnt); }, 500);
+				if (!canplay) return;
 				let u = location - 1;
 				let d = location + 1;
 				let l = location - 100;
@@ -370,6 +371,7 @@ function handleComplete(evt, comp) {
 				tnt2.gotoAndPlay("explore");
 				blocks[location2] = 0;
 				setTimeout(function () { exportRoot.removeChild(tnt2); }, 500);
+				if (!canplay) return;
 				createjs.Sound.play(explore_sound());
 				let u2 = location2 - 1;
 				let d2 = location2 + 1;
@@ -485,6 +487,7 @@ function handleComplete(evt, comp) {
 				blocks[location] = 0;
 				createjs.Sound.play(explore_sound());
 				setTimeout(function () { exportRoot.removeChild(tnt); }, 500);
+				if (!canplay) return;
 				let u = location - 1;
 				let d = location + 1;
 				let l = location - 100;
@@ -574,6 +577,7 @@ function handleComplete(evt, comp) {
 				blocks[location2] = 0;
 				createjs.Sound.play(explore_sound());
 				setTimeout(function () { exportRoot.removeChild(tnt2); }, 500);
+				if (!canplay) return;
 				let u2 = location2 - 1;
 				let d2 = location2 + 1;
 				let l2 = location2 - 100;
