@@ -38,7 +38,7 @@ function handleComplete(evt, comp) {
 	let gold_count = 0;
 	var blocks = [1213];
 	var block = [];
-	let end = true;
+	let end = false;
 
 	//Player1
 	let p1die = false;
@@ -84,7 +84,10 @@ function handleComplete(evt, comp) {
 		loadpoint++;
 		if (loadpoint === sounds.length) {
 			// This is fired for each sound that is registered.
+			end = true;
 			document.querySelector(".gamePlayBtn").style.display = 'block';
+			document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
+			document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
 		}
 	})
 	createjs.Sound.registerSounds(sounds);
@@ -93,7 +96,7 @@ function handleComplete(evt, comp) {
 
 	window.addEventListener("keydown", keydownMoveFn)
 	window.addEventListener("keyup", keyupMoveFn)
-	
+
 	document.querySelector(".left1").addEventListener("touchstart", function () { touchdownMove(37) })
 	document.querySelector(".up1").addEventListener("touchstart", function () { touchdownMove(38) })
 	document.querySelector(".right1").addEventListener("touchstart", function () { touchdownMove(39) })
@@ -708,7 +711,7 @@ function handleComplete(evt, comp) {
 	function end_detect() {
 		if (!canplay) {
 			document.getElementById("reload_back").innerHTML = "按任意鍵重置遊戲";
-		document.getElementById("reload").innerHTML = "按任意鍵重置遊戲";
+			document.getElementById("reload").innerHTML = "按任意鍵重置遊戲";
 			document.getElementById("reload_back").style.display = "block";
 			document.getElementById("reload").style.display = "block";
 			end = true;
