@@ -158,6 +158,9 @@ function handleComplete(evt, comp) {
 		robot2.y = 575;
 		robot2.gotoAndPlay("up");
 
+		document.querySelector(".p1score").innerHTML = score1;
+		document.querySelector(".p2score").innerHTML = score2;
+
 		for (var i = 0; i < 13; i++) {
 			for (var j = 0; j < 13; j++) {
 				exportRoot.removeChild(block[i * 100 + j]);
