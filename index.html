@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>VB</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>VB</title>
 </head>
 
 <body>
-    <!--<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>-->
-    <script src="./createjs-2015.11.26.min.js"></script>
-    <script src="./vb.js"></script>
-    <script src="./index.js"></script>
-    <style>
+	<!--<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>-->
+	<script src="./createjs-2015.11.26.min.js"></script>
+	<script src="./vb.js"></script>
+	<script src="./index.js"></script>
+	<style>
 		* {
 			padding: 0;
 			margin: 0;
@@ -229,6 +229,9 @@
 					|| navigator.userAgent.match(/BlackBerry/i)
 					|| navigator.userAgent.match(/Windows Phone/i)
 				) {
+					if (window.DeviceOrientationEvent) {
+						alert("請轉為橫屏!");
+					}
 					return true;
 				}
 				else {
