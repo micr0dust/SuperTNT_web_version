@@ -82,6 +82,7 @@ function handleComplete(evt, comp) {
 	var end_title = new lib.text();
 	exportRoot.addChild(end_title);
 	end_title.gotoAndPlay("none");
+	let entitle = false;
 
 	var loadpoint = 0;
 	var sounds = [
@@ -149,11 +150,8 @@ function handleComplete(evt, comp) {
 		document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
 		document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
 		document.querySelector(".gamePlayBtn").style.display = 'block';
-		document.getElementById("win").classList.remove("drew");
-		document.getElementById("win").classList.remove("p1win");
-		document.getElementById("win").classList.remove("p2win");
-		document.getElementById("win").innerHTML = "";
-		document.getElementById("win").classList.add("win");
+		if(entitle) end_title.gotoAndPlay("none");
+		entitle=false;
 		score1_test = score1;
 		score2_test = score2;
 		//Player1
@@ -751,6 +749,7 @@ function handleComplete(evt, comp) {
 			document.getElementById("reload_back").style.display = "block";
 			document.getElementById("reload").style.display = "block";
 			end = true;
+			entitle=true;
 			bgAudio.stop();
 		}
 	}
