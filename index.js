@@ -47,6 +47,7 @@ function handleComplete(evt, comp) {
 	var player1_x = 12;
 	var player1_y = 1;
 	var score1 = 0;
+	var score1_test;
 	robot.x = 575;
 	robot.y = 25;
 	exportRoot.addChild(robot);
@@ -60,10 +61,27 @@ function handleComplete(evt, comp) {
 	var player2_x = 1;
 	var player2_y = 12;
 	var score2 = 0;
+	var score2_test;
 	robot2.x = 25;
 	robot2.y = 575;
 	exportRoot.addChild(robot2);
 	robot2.gotoAndPlay("up");
+
+	var score_1 = new lib.number();
+	score_1.x = 550;
+	score_1.y = -20;
+	exportRoot.addChild(score_1);
+	score_1.gotoAndPlay(0);
+
+	var score_2 = new lib.number();
+	score_2.x = 550;
+	score_2.y = 400;
+	exportRoot.addChild(score_2);
+	score_2.gotoAndPlay(0);
+
+	var end_title = new lib.text();
+	exportRoot.addChild(end_title);
+	end_title.gotoAndPlay("none");
 
 	var loadpoint = 0;
 	var sounds = [
@@ -136,7 +154,8 @@ function handleComplete(evt, comp) {
 		document.getElementById("win").classList.remove("p2win");
 		document.getElementById("win").innerHTML = "";
 		document.getElementById("win").classList.add("win");
-
+		score1_test = score1;
+		score2_test = score2;
 		//Player1
 		p1die = false;
 		udlr = true;
@@ -158,8 +177,8 @@ function handleComplete(evt, comp) {
 		robot2.y = 575;
 		robot2.gotoAndPlay("up");
 
-		document.querySelector(".p1score").innerHTML = score1;
-		document.querySelector(".p2score").innerHTML = score2;
+		if (score1_test != score1) score_1.gotoAndPlay(score1);
+		if (score2_test != score2) score_2.gotoAndPlay(score2);
 
 		for (var i = 0; i < 13; i++) {
 			for (var j = 0; j < 13; j++) {
@@ -287,6 +306,7 @@ function handleComplete(evt, comp) {
 				let d = location + 1;
 				let l = location - 100;
 				let r = location + 100;
+				score1_test = score1;
 				if (blocks[u] > 1 && blocks[u] < 4) {
 					block[u].gotoAndPlay("air");
 					if (blocks[u] === 2) score1++;
@@ -311,7 +331,7 @@ function handleComplete(evt, comp) {
 					blocks[r] = 0;
 
 				}
-				document.querySelector(".p1score").innerHTML = score1;
+				if (score1_test != score1) score_1.gotoAndPlay(score1);
 				if (location === (player1_x) * 100 + (player1_y)) p1die++;
 				if (location === (player2_x) * 100 + (player2_y)) p2die++;
 				if (u === (player1_x) * 100 + (player1_y)) p1die++;
@@ -377,6 +397,7 @@ function handleComplete(evt, comp) {
 				let d2 = location2 + 1;
 				let l2 = location2 - 100;
 				let r2 = location2 + 100;
+				score2_test = score2;
 				if (blocks[u2] > 1 && blocks[u2] < 4) {
 					block[u2].gotoAndPlay("air");
 					if (blocks[u2] === 2) score2++;
@@ -397,7 +418,7 @@ function handleComplete(evt, comp) {
 					if (blocks[r2] === 2) score2++;
 					blocks[r2] = 0;
 				}
-				document.querySelector(".p2score").innerHTML = score2;
+				if (score2_test != score2) score_2.gotoAndPlay(score2);
 				if (location2 === (player1_x) * 100 + (player1_y)) p1die++;
 				if (location2 === (player2_x) * 100 + (player2_y)) p2die++;
 				if (u2 === (player1_x) * 100 + (player1_y)) p1die++;
@@ -492,6 +513,7 @@ function handleComplete(evt, comp) {
 				let d = location + 1;
 				let l = location - 100;
 				let r = location + 100;
+				score1_test = score1;
 				if (blocks[u] > 1 && blocks[u] < 4) {
 					block[u].gotoAndPlay("air");
 					if (blocks[u] === 2) score1++;
@@ -516,7 +538,7 @@ function handleComplete(evt, comp) {
 					blocks[r] = 0;
 
 				}
-				document.querySelector(".p1score").innerHTML = score1;
+				if (score1_test != score1) score_1.gotoAndPlay(score1);
 				if (location === (player1_x) * 100 + (player1_y)) p1die++;
 				if (location === (player2_x) * 100 + (player2_y)) p2die++;
 				if (u === (player1_x) * 100 + (player1_y)) p1die++;
@@ -582,6 +604,7 @@ function handleComplete(evt, comp) {
 				let d2 = location2 + 1;
 				let l2 = location2 - 100;
 				let r2 = location2 + 100;
+				score2_test = score2;
 				if (blocks[u2] > 1 && blocks[u2] < 4) {
 					block[u2].gotoAndPlay("air");
 					if (blocks[u2] === 2) score2++;
@@ -602,7 +625,7 @@ function handleComplete(evt, comp) {
 					if (blocks[r2] === 2) score2++;
 					blocks[r2] = 0;
 				}
-				document.querySelector(".p2score").innerHTML = score2;
+				if (score2_test != score2) score_2.gotoAndPlay(score2);
 				if (location2 === (player1_x) * 100 + (player1_y)) p1die++;
 				if (location2 === (player2_x) * 100 + (player2_y)) p2die++;
 				if (u2 === (player1_x) * 100 + (player1_y)) p1die++;
@@ -657,17 +680,19 @@ function handleComplete(evt, comp) {
 			if (gold_count === score1 + score2) {
 				if (score1 - score2 === 0) {
 					canplay = false;
-					document.getElementById("win").classList.remove("win");
-					document.getElementById("win").innerHTML = "WTF?"
-					document.getElementById("win").classList.add("drew");
+					end_title.gotoAndPlay("wtf");
+					end_title.x = 720;
+					end_title.y = 320;
 				} else if (score1 - score2 > 0) {
 					canplay = false;
-					document.getElementById("win").classList.remove("win");
-					document.getElementById("win").classList.add("p1win");
+					end_title.gotoAndPlay("winner");
+					end_title.x = 700;
+					end_title.y = 240;
 				} else {
 					canplay = false;
-					document.getElementById("win").classList.remove("win");
-					document.getElementById("win").classList.add("p2win");
+					end_title.gotoAndPlay("winner");
+					end_title.x = 750;
+					end_title.y = 370;
 				}
 				end_detect();
 				return;
@@ -675,40 +700,44 @@ function handleComplete(evt, comp) {
 			canplay = false;
 			robot.gotoAndPlay("explore");
 			robot2.gotoAndPlay("explore");
-			document.getElementById("win").classList.remove("win");
-			document.getElementById("win").innerHTML = "drew"
-			document.getElementById("win").classList.add("drew");
+			end_title.gotoAndPlay("drew");
+			end_title.x = 720;
+			end_title.y = 320;
 			end_detect();
 			return;
 		} else if (p1die) {
 			canplay = false;
 			robot.gotoAndPlay("explore");
-			document.getElementById("win").classList.remove("win");
-			document.getElementById("win").classList.add("p2win");
+			end_title.gotoAndPlay("winner");
+					end_title.x = 750;
+					end_title.y = 370;
 			end_detect();
 			return;
 		} else if (p2die) {
 			canplay = false;
 			robot2.gotoAndPlay("explore");
-			document.getElementById("win").classList.remove("win");
-			document.getElementById("win").classList.add("p1win");
+			end_title.gotoAndPlay("winner");
+					end_title.x = 700;
+					end_title.y = 240;
 			end_detect();
 			return;
 		}
 		if (gold_count === score1 + score2) {
 			if (score1 - score2 === 0) {
 				canplay = false;
-				document.getElementById("win").classList.remove("win");
-				document.getElementById("win").innerHTML = "drew"
-				document.getElementById("win").classList.add("drew");
+				end_title.gotoAndPlay("drew");
+				end_title.x = 720;
+				end_title.y = 320;
 			} else if (score1 - score2 > 0) {
 				canplay = false;
-				document.getElementById("win").classList.remove("win");
-				document.getElementById("win").classList.add("p1win");
+				end_title.gotoAndPlay("winner");
+					end_title.x = 700;
+					end_title.y = 240;
 			} else {
 				canplay = false;
-				document.getElementById("win").classList.remove("win");
-				document.getElementById("win").classList.add("p2win");
+				end_title.gotoAndPlay("winner");
+					end_title.x = 750;
+					end_title.y = 370;
 			}
 			end_detect();
 		}
