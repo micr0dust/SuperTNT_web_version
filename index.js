@@ -190,7 +190,7 @@ function handleComplete(evt, comp) {
 
 
 	function mapCreate() {
-
+		createjs.Sound.play("point");
 		gold_count = 0;
 
 		let map = Math.floor(Math.random() * (13 - 1 + 1) + 1); //(最大-最小+1)+最小
