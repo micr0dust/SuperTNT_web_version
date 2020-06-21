@@ -129,6 +129,7 @@ function handleComplete(evt, comp) {
 			document.querySelector(".gamePlayBtn").style.display = 'block';
 			document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
 			document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
+			openCreatePostModal();
 		}
 	})
 	createjs.Sound.registerSounds(sounds);
@@ -773,7 +774,6 @@ function handleComplete(evt, comp) {
 			end = true;
 			entitle = true;
 			bgAudio.stop();
-			openCreatePostModal();
 		}
 	}
 
