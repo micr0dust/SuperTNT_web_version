@@ -8,7 +8,7 @@
     }],
     "start_url": "index.html",
     "scope": ".",
-    "display": "minimal-ui",
+    "display": "fullscreen",
     "orientation": "portrait-primary",
     "background_color": "#68e86e",
     "theme_color": "#f26d6d",
