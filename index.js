@@ -31,6 +31,28 @@ function handleComplete(evt, comp) {
 	exportRoot = new lib.vb();
 	stage = new lib.Stage(canvas);
 
+	var deferredPrompt;
+	window.addEventListener('beforeinstallprompt', function (event) {
+		console.log('安裝視窗跳出來前 阻止它!!');
+		event.preventDefault();
+		deferredPrompt = event;
+		return false;
+	});
+
+	function openCreatePostModal() {
+		if(deferredPrompt){
+			deferredPrompt.prompt();
+			deferredPrompt.userChoice.then(function(choiceResult){
+			  console.log(choiceResult.outcome);
+			  if(choiceResult.outcome == 'dismissed')
+				  console.log('使用者取消安裝');
+			  else
+				  console.log('使用者安裝');
+			});
+			deferredPrompt = null;
+		}
+	  }
+
 	const STEP = 50;
 	let canplay = false;
 	let step = 1;
@@ -150,8 +172,8 @@ function handleComplete(evt, comp) {
 		document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
 		document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
 		document.querySelector(".gamePlayBtn").style.display = 'block';
-		if(entitle) end_title.gotoAndPlay("none");
-		entitle=false;
+		if (entitle) end_title.gotoAndPlay("none");
+		entitle = false;
 		score1_test = score1;
 		score2_test = score2;
 		//Player1
@@ -707,16 +729,16 @@ function handleComplete(evt, comp) {
 			canplay = false;
 			robot.gotoAndPlay("explore");
 			end_title.gotoAndPlay("winner");
-					end_title.x = 750;
-					end_title.y = 370;
+			end_title.x = 750;
+			end_title.y = 370;
 			end_detect();
 			return;
 		} else if (p2die) {
 			canplay = false;
 			robot2.gotoAndPlay("explore");
 			end_title.gotoAndPlay("winner");
-					end_title.x = 700;
-					end_title.y = 240;
+			end_title.x = 700;
+			end_title.y = 240;
 			end_detect();
 			return;
 		}
@@ -729,13 +751,13 @@ function handleComplete(evt, comp) {
 			} else if (score1 - score2 > 0) {
 				canplay = false;
 				end_title.gotoAndPlay("winner");
-					end_title.x = 700;
-					end_title.y = 240;
+				end_title.x = 700;
+				end_title.y = 240;
 			} else {
 				canplay = false;
 				end_title.gotoAndPlay("winner");
-					end_title.x = 750;
-					end_title.y = 370;
+				end_title.x = 750;
+				end_title.y = 370;
 			}
 			end_detect();
 		}
@@ -749,8 +771,9 @@ function handleComplete(evt, comp) {
 			document.getElementById("reload_back").style.display = "block";
 			document.getElementById("reload").style.display = "block";
 			end = true;
-			entitle=true;
+			entitle = true;
 			bgAudio.stop();
+			openCreatePostModal();
 		}
 	}
 
