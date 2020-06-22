@@ -125,7 +125,6 @@ function handleComplete(evt, comp) {
 		loadpoint++;
 		if (loadpoint === sounds.length) {
 			// This is fired for each sound that is registered.
-			serviceWorker();
 			end = true;
 			document.querySelector(".gamePlayBtn").style.display = 'block';
 			document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
@@ -159,6 +158,8 @@ function handleComplete(evt, comp) {
 		bgAudio.volume = 0.3;
 		end = false;
 		canplay = true;
+		serviceWorker();
+		alert("正在進行第一次遊玩快取儲存");
 	})
 
 	function bgm() {
