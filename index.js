@@ -126,6 +126,10 @@ function handleComplete(evt, comp) {
 		if (loadpoint === sounds.length) {
 			// This is fired for each sound that is registered.
 			serviceWorker();
+			end = true;
+			document.querySelector(".gamePlayBtn").style.display = 'block';
+			document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
+			document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
 		}
 	})
 	createjs.Sound.registerSounds(sounds);
@@ -156,13 +160,6 @@ function handleComplete(evt, comp) {
 		end = false;
 		canplay = true;
 	})
-
-	function begin() {
-		end = true;
-		document.querySelector(".gamePlayBtn").style.display = 'block';
-		document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
-		document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
-	}
 
 	function bgm() {
 		let exp = Math.floor(Math.random() * (4 - 1 + 1) + 1);
