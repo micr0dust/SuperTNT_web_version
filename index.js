@@ -61,6 +61,7 @@ function handleComplete(evt, comp) {
 	var blocks = [1213];
 	var block = [];
 	let end = false;
+	let first = true;
 
 	//Player1
 	let p1die = false;
@@ -129,7 +130,6 @@ function handleComplete(evt, comp) {
 			document.querySelector(".gamePlayBtn").style.display = 'block';
 			document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
 			document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
-			serviceWorker();
 		}
 	})
 	createjs.Sound.registerSounds(sounds);
@@ -159,6 +159,10 @@ function handleComplete(evt, comp) {
 		bgAudio.volume = 0.3;
 		end = false;
 		canplay = true;
+		if(first){
+			serviceWorker();
+			first=false;
+		}
 	})
 
 	function bgm() {
