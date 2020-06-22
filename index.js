@@ -40,18 +40,18 @@ function handleComplete(evt, comp) {
 	});
 
 	function openCreatePostModal() {
-		if(deferredPrompt){
+		if (deferredPrompt) {
 			deferredPrompt.prompt();
-			deferredPrompt.userChoice.then(function(choiceResult){
-			  console.log(choiceResult.outcome);
-			  if(choiceResult.outcome == 'dismissed')
-				  console.log('使用者取消安裝');
-			  else
-				  console.log('使用者安裝');
+			deferredPrompt.userChoice.then(function (choiceResult) {
+				console.log(choiceResult.outcome);
+				if (choiceResult.outcome == 'dismissed')
+					console.log('使用者取消安裝');
+				else
+					console.log('使用者安裝');
 			});
 			deferredPrompt = null;
 		}
-	  }
+	}
 
 	const STEP = 50;
 	let canplay = false;
@@ -125,10 +125,7 @@ function handleComplete(evt, comp) {
 		loadpoint++;
 		if (loadpoint === sounds.length) {
 			// This is fired for each sound that is registered.
-			end = true;
-			document.querySelector(".gamePlayBtn").style.display = 'block';
-			document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
-			document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
+			serviceWorker();
 		}
 	})
 	createjs.Sound.registerSounds(sounds);
@@ -159,6 +156,13 @@ function handleComplete(evt, comp) {
 		end = false;
 		canplay = true;
 	})
+
+	function begin() {
+		end = true;
+		document.querySelector(".gamePlayBtn").style.display = 'block';
+		document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
+		document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
+	}
 
 	function bgm() {
 		let exp = Math.floor(Math.random() * (4 - 1 + 1) + 1);
