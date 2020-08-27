@@ -31,28 +31,6 @@ function handleComplete(evt, comp) {
 	exportRoot = new lib.vb();
 	stage = new lib.Stage(canvas);
 
-	var deferredPrompt;
-	window.addEventListener('beforeinstallprompt', function (event) {
-		console.log('安裝視窗跳出來前 阻止它!!');
-		event.preventDefault();
-		deferredPrompt = event;
-		return false;
-	});
-
-	function openCreatePostModal() {
-		if (deferredPrompt) {
-			deferredPrompt.prompt();
-			deferredPrompt.userChoice.then(function (choiceResult) {
-				console.log(choiceResult.outcome);
-				if (choiceResult.outcome == 'dismissed')
-					console.log('使用者取消安裝');
-				else
-					console.log('使用者安裝');
-			});
-			deferredPrompt = null;
-		}
-	}
-
 	const STEP = 50;
 	let canplay = false;
 	let step = 1;
@@ -130,6 +108,29 @@ function handleComplete(evt, comp) {
 			document.querySelector(".gamePlayBtn").style.display = 'block';
 			document.getElementById("reload_back").innerHTML = "按任意鍵改變地圖";
 			document.getElementById("reload").innerHTML = "按任意鍵改變地圖";
+			serviceWorker();
+
+			var deferredPrompt;
+			window.addEventListener('beforeinstallprompt', function (event) {
+				console.log('安裝視窗跳出來前 阻止它!!');
+				event.preventDefault();
+				deferredPrompt = event;
+				return false;
+			});
+
+			function openCreatePostModal() {
+				if (deferredPrompt) {
+					deferredPrompt.prompt();
+					deferredPrompt.userChoice.then(function (choiceResult) {
+						console.log(choiceResult.outcome);
+						if (choiceResult.outcome == 'dismissed')
+							console.log('使用者取消安裝');
+						else
+							console.log('使用者安裝');
+					});
+					deferredPrompt = null;
+				}
+			}
 		}
 	})
 	createjs.Sound.registerSounds(sounds);
@@ -159,10 +160,6 @@ function handleComplete(evt, comp) {
 		bgAudio.volume = 0.3;
 		end = false;
 		canplay = true;
-		if(first){
-			serviceWorker();
-			first=false;
-		}
 	})
 
 	function bgm() {

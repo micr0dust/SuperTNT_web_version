@@ -1,7 +1,3 @@
-function serviceWorker(){
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-        });
-    }
+async function serviceWorker() {
+    const registration = await navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
 }
