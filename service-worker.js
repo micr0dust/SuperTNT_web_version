@@ -52,6 +52,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+    const dataUrl = 'https://wuilliam104286.github.io/SuperTNT_web_version/';
 	event.respondWith(
 		caches.match(event.request).then(function (response) {
 			return response || fetch(event.request).then(res =>
