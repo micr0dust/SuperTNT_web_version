@@ -109,17 +109,17 @@ function handleComplete(evt, comp) {
 
 	var loadpoint = 0;
 	var sounds = [
-		{ src: "./assets/bgm1.mp3", id: "bg1" },
-		{ src: "./assets/bgm4.mp3", id: "bg4" },
-		{ src: "./assets/bgm6.mp3", id: "bg6" },
-		{ src: "./assets/bgm8.mp3", id: "bg8" },
-		{ src: "./assets/explode1.mp3", id: "exp1" },
-		{ src: "./assets/explode2.mp3", id: "exp2" },
-		{ src: "./assets/explode3.mp3", id: "exp3" },
-		{ src: "./assets/explode4.mp3", id: "exp4" },
-		{ src: "./assets/fuse.mp3", id: "fuse" },
-		{ src: "./assets/point.mp3", id: "point" },
-		{ src: "./assets/dead.mp3", id: "dead" },
+		{ src: "/assets/bgm1.mp3", id: "bg1" },
+		{ src: "/assets/bgm4.mp3", id: "bg4" },
+		{ src: "/assets/bgm6.mp3", id: "bg6" },
+		{ src: "/assets/bgm8.mp3", id: "bg8" },
+		{ src: "/assets/explode1.mp3", id: "exp1" },
+		{ src: "/assets/explode2.mp3", id: "exp2" },
+		{ src: "/assets/explode3.mp3", id: "exp3" },
+		{ src: "/assets/explode4.mp3", id: "exp4" },
+		{ src: "/assets/fuse.mp3", id: "fuse" },
+		{ src: "/assets/point.mp3", id: "point" },
+		{ src: "/assets/dead.mp3", id: "dead" },
 	];
 	createjs.Sound.alternateExtensions = ["mp3"];
 	createjs.Sound.addEventListener("fileload", (e) => {
