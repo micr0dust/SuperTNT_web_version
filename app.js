@@ -1,7 +1,5 @@
 function serviceWorker(){
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register('./service-worker.js', { scope: './' })
-        });
+            navigator.serviceWorker.register('./service-worker.js', { scope: '/' });
     }
 }
