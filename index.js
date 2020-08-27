@@ -778,7 +778,6 @@ function handleComplete(evt, comp) {
 			end = true;
 			entitle = true;
 			bgAudio.stop();
-			openCreatePostModal();
 		}
 	}
 
