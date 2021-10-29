@@ -20,24 +20,25 @@ const filesToCache = [
     './assets/explode4.mp3',
     './assets/fuse.mp3',
     './assets/point.mp3',
-    './assets/dead.mp3'
+    './assets/dead.mp3',
+    'https://cdn.jsdelivr.net/npm/sweetalert2@10'
 ];
 
 const cacheName = 'static';
 
 self.addEventListener('activate', event => {
-	console.log('now ready to handle fetches!');
-	  event.waitUntil(
-		caches.keys().then(function(cacheName) {
-			var promiseArr = cacheName.map(function(item) {
-				if (item !== cacheName) {
-					// Delete that cached file
-					return caches.delete(item);
-				}
-			})
-			return Promise.all(promiseArr);
-		})
-	); // end e.waitUntil
+    console.log('now ready to handle fetches!');
+    event.waitUntil(
+        caches.keys().then(function(cacheName) {
+            var promiseArr = cacheName.map(function(item) {
+                if (item !== cacheName) {
+                    // Delete that cached file
+                    return caches.delete(item);
+                }
+            })
+            return Promise.all(promiseArr);
+        })
+    ); // end e.waitUntil
 });
 
 // install
@@ -53,21 +54,21 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
     const dataUrl = 'https://wuilliam104286.github.io/SuperTNT_web_version/';
-	event.respondWith(
-		caches.match(event.request).then(function (response) {
-			return response || fetch(event.request).then(res =>
-				// 存 caches 之前，要先打開 caches.open(cacheName)
-				caches.open(cacheName)
-				.then(function(cache) {
-					// cache.put(key, value)
-					// 下一次 caches.match 會對應到 event.request
-					cache.put(event.request, res.clone());
-					return res;
-				})
-			);
-		})
-	);
-}); 
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            return response || fetch(event.request).then(res =>
+                // 存 caches 之前，要先打開 caches.open(cacheName)
+                caches.open(cacheName)
+                .then(function(cache) {
+                    // cache.put(key, value)
+                    // 下一次 caches.match 會對應到 event.request
+                    cache.put(event.request, res.clone());
+                    return res;
+                })
+            );
+        })
+    );
+});
 /*
 self.addEventListener('install', function(event){
     console.log('[SW] 安裝(Install) Service Worker!',event);
