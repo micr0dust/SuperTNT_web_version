@@ -10,6 +10,6 @@
 
 2P:上下左右+[/]
 
-demo: https://wuilliam104286.github.io/SuperTNT_web_version/
+demo: https://micr0dust.github.io/SuperTNT_web_version/
 
 ![](https://truth.bahamut.com.tw/s01/202005/521a1b26781f0a4b9fec102729e1ed0a.JPG?w=1000)
