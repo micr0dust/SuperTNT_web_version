@@ -10,6 +10,10 @@
 
 ![控制方式](images/control.png)
 
+## 遊戲連結
+
 [![前往網頁](https://github.com/wuilliam104286/image_saves/raw/master/img/button/btn-web-black-ch.png "前往網頁")](https://micr0dust.github.io/SuperTNT_web_version/)
+
+## 遊戲封面
 
 ![封面](https://truth.bahamut.com.tw/s01/202005/521a1b26781f0a4b9fec102729e1ed0a.JPG?w=1000)
